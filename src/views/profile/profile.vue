@@ -1,15 +1,37 @@
 <template>
-  <div>
-      <h1>档案</h1>
+  <div class="profile">
+      <nav-bar>
+        <div slot="center">我的档案</div>
+      </nav-bar>
+     <scroll class="wrapper">
+        <profile-user-info/>
+        <profile-serive-info/>
+     </scroll>
   </div>
 </template>
 
 <script>
+import navBar from 'common/navBar/navBar.vue'
+import ProfileUserInfo from './profileUserInfo.vue'
+import ProfileSeriveInfo from './profileSeriveInfo.vue'
+import Scroll from 'common/scroll/scroll.vue'
 export default {
-    name:"profile"
+  components: {
+     navBar,
+    ProfileUserInfo,
+    ProfileSeriveInfo,
+    Scroll,
+  },
+
 }
 </script>
 
-<style>
-
+<style scoped>
+  .profile{
+    height: 100vh;
+  }
+  .wrapper{
+    height: calc(100% - 44px - 49px);
+    overflow: hidden;
+  }
 </style>

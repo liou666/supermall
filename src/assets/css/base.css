@@ -24,7 +24,6 @@ body {
   background: var(--color-background);
   color: var(--color-text);
   width: 100vw;
- 
 }
 
 a {
@@ -32,9 +31,6 @@ a {
   text-decoration: none;
 }
 
-i,em{
-  font-style: normal;
-}
 
 .clear-fix::after {
   clear: both;
@@ -44,9 +40,7 @@ i,em{
   height: 0;
   visibility: hidden;
 }
-li{
-  list-style: none;
-}
+
 .clear-fix {
   zoom: 1;
 }

@@ -1,36 +1,39 @@
 <template>
-      <header>
-          <div class="left"><slot name="left"></slot></div>
-          <div class="center"><slot name="center"></slot></div>
-          <div class="right"><slot name="right"></slot></div>
-      </header>
+    <div class="nav-bar">
+        <div class="left" @click="backHome"><slot name="left"></slot></div>
+        <div class="center"><slot name="center"></slot></div>
+        <div class="right"><slot name="right"></slot></div>
+    </div>
 </template>
 
 <script>
-export default {
-    name:"NavBar"
-}
+    export default {
+        methods: {
+            backHome(){
+                this.$router.back()
+            }
+        },
+    }
 </script>
 
 <style scoped>
-    header{
+    .nav-bar{
         display: flex;
         height: 44px;
-        line-height: 44px;
-       text-align: center;
-       /* position: fixed;
-       top: 0;
-       left: 0;
-       right: 0;
-       z-index: 9; */
-       box-shadow: 0 2px 3px rgba(0,0,0,0.04);
+        background-color: var(--color-tint);
+        color: #fff;
+        box-shadow: 0 2px 2px rgba(0,0,0,0.05);
+        align-items: center;
     }
     .left,.right{
         width: 60px;
        
+         text-align: center;
+       
     }
     .center{
         flex: 1;
-        color: #fff;
+        text-align: center;
+      
     }
 </style>

@@ -1,60 +1,55 @@
 <template>
-      <section class="tabBarItem" @click="itemClick">
-         <div v-if="!isActive"> <slot name="item-icon"></slot></div>
-         <div v-else> <slot name="item-icon-active"></slot></div>
-         <div :style="activeStyle"> <slot name="item-text"></slot></div>
-      </section>
+    <div class="tab-bar-item" @click="itemClick">        
+        <div class="icon" v-show="!isActive">
+                    <slot name="img"></slot>
+        </div>
+        <div class="icon_active" v-show="isActive">
+                    <slot name="img_active"></slot>
+        </div>        
+        <div class="text" :style='activeStyle'> 
+               <slot name="text"></slot>  
+        </div>
+    </div>
 </template>
 
 <script>
-
 export default {
-    name:"tabBarItem",
     props:{
-        path:{
+        color:{
             type:String,
-            require:true
+            default:'hotpink'
         },
-        activeColor:{
-              type:String,
-              default:"red"
+        path:''
+    },
+    computed: {
+        activeStyle(){
+            return {color:this.isActive?this.color:''}
+        },
+        isActive(){
+            return this.$route.path==this.path
         }
     },
-   data() {
-       return {
-          
-       }
-   },
-   computed: {
-        isActive(){
-            return this.$route.path.includes(this.path)
-        },
-        activeStyle(){
-            return this.isActive?{color:this.activeColor}:{}
-        }
-   },
     methods: {
-        itemClick(){ 
-            if( this.$route.path!=this.path) this.$router.replace(this.path)
+        itemClick(){       
+            if(this.$route.path!==this.path){
+                this.$router.push(this.path)
+            }
         }
     },
 }
 </script>
 
-<style>
-
- .tabBarItem{
-     flex: 1;
-     border-right:1px solid #ccc ;
-     font-size: 14px;
-   }
-   .tabBarItem:last-child{
-     border: 0;
-   }
-    .tabBarItem img{
-        width: 22px;
-        height: 22px;
+<style scoped>
+    .tab-bar-item{
+        flex: 1; 
+        text-align: center;
+    }
+    .tab-bar-item img{
+        width: 24px;
+        margin: 2px 0 2px;
         vertical-align: middle;
-        margin: 3px 0 2px 0;
+    }
+    .text{
+        font-size: 14px;
     }
 </style>

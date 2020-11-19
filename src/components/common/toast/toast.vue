@@ -1,59 +1,45 @@
 <template>
-  <div class="toast" v-show="isShow">
-      {{message}}
-  </div>
+      <div id="toast" v-show="isShow">{{message}}</div>
 </template>
 
 <script>
 export default {
-    name:"toast",
     props:{
-        // message:{
-        //     type:String,
-        //     default(){
-        //         return  ''
-        //     }
-        // },
-        // show:{
-        //     type:Boolean,
-        //     default(){
-        //         return false
-        //     }
-        // }
-    },
-    data() {
-        return {
-           message:'',
-           isShow:false
+        isShow:{
+            type:Boolean,
+            default:false
+        },
+        message:{
+             type:String,
+            default:''
         }
     },
     methods: {
-        show(message,duration=1000){
+        show(message,time=2500){
             this.message=message;
             this.isShow=true;
-            console.log(1);
             setTimeout(()=>{
                 this.isShow=false;
-            },duration)
+            },time)
         }
     },
 }
 </script>
 
 <style scoped>
-    .toast{
-        width: 150px;
-        height:28px;
-        text-align: center;
-        line-height: 28px;
-        background-color: rgba(0,0,0,0.8);
+    #toast{
+        width: 220px;
+        height: 50px;
+        background-color: rgba(0,0,0,0.7);
         position: absolute;
-        left: 50%;
         top: 50%;
+        left: 50%;
         transform: translate(-50%,-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
         color: #fff;
         border-radius: 10px;
-      
-        z-index: 99999;
+        z-index: 999;
     }
 </style>
